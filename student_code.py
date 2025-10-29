@@ -1,5 +1,3 @@
-from collections import deque
-
 """
 Implements VersatileDigraph with visualization libraries.
 """
@@ -420,6 +418,7 @@ class TraversableDigraph(SortableDigraph):
         Breadth-first search starting at start_node_id.
         Yields nodes layer by layer, using a deque for efficiency.
         """
+        from collections import deque # pylint: disable=import-outside-toplevel
         visited = {start_node_id}
         queue = deque(self.successors(start_node_id))
         while queue:
