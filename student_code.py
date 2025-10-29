@@ -400,14 +400,13 @@ class TraversableDigraph(SortableDigraph):
     """
     Extends SortableDigraph with depth-first and breadth-first traversal.
     """
-
     def dfs(self, start_node_id: str):
         """
         Depth-first search starting at start_node_id.
         Yields nodes in the order they are first visited.
         """
-        visited = set()
-        stack = [start_node_id]
+        visited = {start_node_id}
+        stack = list(self.successors(start_node_id))
         while stack:
             u = stack.pop()
             if u in visited:
@@ -421,23 +420,22 @@ class TraversableDigraph(SortableDigraph):
         Breadth-first search starting at start_node_id.
         Yields nodes layer by layer, using a deque for efficiency.
         """
-        visited = set()
-        queue = deque([start_node_id])
+        visited = {start_node_id}
+        queue = deque(self.successors(start_node_id))
         while queue:
             u = queue.popleft()
             if u in visited:
                 continue
             visited.add(u)
             for v in self.successors(u):
-                queue.append(v)
+                if v not in visited:
+                    queue.append(v)
             yield u
-
 
 class DAG(TraversableDigraph):
     """
     Directed acyclic graph. Prevents cycle creation on edge insert.
     """
-
     def add_edge(
         self,
         start_node_id: str,
