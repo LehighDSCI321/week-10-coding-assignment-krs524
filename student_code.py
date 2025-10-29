@@ -1,3 +1,5 @@
+from collections import deque
+
 """
 Implements VersatileDigraph with visualization libraries.
 """
@@ -393,8 +395,6 @@ if __name__ == "__main__":
     g.add_edge("vest", "jacket")
 
     print(g.top_sort())
-
-from collections import deque
 
 class TraversableDigraph(SortableDigraph):
     """
