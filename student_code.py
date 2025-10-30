@@ -472,7 +472,7 @@ if __name__ == "__main__":
     for name in ["shirt", "pants", "socks", "vest", "tie", "belt", "shoes", "jacket"]:
         g.add_node(name)
 
-    edges = [
+    edge_list = [
         ("shirt", "pants"),
         ("shirt", "vest"),
         ("shirt", "tie"),
@@ -484,7 +484,7 @@ if __name__ == "__main__":
         ("belt", "jacket"),
         ("vest", "jacket"),
     ]
-    for u, v in edges:
+    for u, v in edge_list:
         g.add_edge(u, v)
 
     print("DFS from 'shirt':", list(g.dfs("shirt")))
