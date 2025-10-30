@@ -485,7 +485,7 @@ if __name__ == "__main__":
         ("vest", "jacket"),
     ]
     for src, dist in edge_list:
-        g.add_edge(srs, dist)
+        g.add_edge(src, dist)
 
     print("DFS from 'shirt':", list(g.dfs("shirt")))
     print("BFS from 'shirt':", list(g.bfs("shirt")))
