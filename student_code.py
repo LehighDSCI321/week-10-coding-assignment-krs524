@@ -464,3 +464,29 @@ class DAG(TraversableDigraph):
             edge_name=edge_name,
             edge_weight=edge_weight,
         )
+
+if __name__ == "__main__":
+    # --- Demo: clothing example graph (from the assignment image) ---
+    g = TraversableDigraph()
+
+    for name in ["shirt", "pants", "socks", "vest", "tie", "belt", "shoes", "jacket"]:
+        g.add_node(name)
+
+    edges = [
+        ("shirt", "pants"),
+        ("shirt", "vest"),
+        ("shirt", "tie"),
+        ("shirt", "jacket"),
+        ("pants", "belt"),
+        ("pants", "shoes"),
+        ("socks", "shoes"),
+        ("tie", "jacket"),
+        ("belt", "jacket"),
+        ("vest", "jacket"),
+    ]
+    for u, v in edges:
+        g.add_edge(u, v)
+
+    print("DFS from 'shirt':", list(g.dfs("shirt")))
+    print("BFS from 'shirt':", list(g.bfs("shirt")))
+    print("Topological order:", g.top_sort())
